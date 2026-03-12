@@ -2,7 +2,7 @@
 // API - Single place for all backend fetch() calls
 // ============================================================
 
-const BASE_URL = "http://localhost:5000/api";
+const BASE_URL = "https://recipehub-backend.onrender.com/api";
 
 const authHeaders = () => ({
   "Content-Type": "application/json",
