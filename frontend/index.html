@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RecipeHub - Discover & Cook</title>
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+  <nav>
+    <a class="nav-logo" href="/index.html">🍽 RecipeHub</a>
+    <div class="nav-links">
+      <a href="/search.html">Search</a>
+      <a href="/saved.html" class="hide-mobile">Saved</a>
+      <a href="/profile.html" class="hide-mobile">Profile</a>
+      <a href="/login.html" id="nav-login" class="btn btn-primary">Login</a>
+      <a href="#" id="nav-logout" style="display:none" class="btn btn-outline">Logout</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <h1 id="user-name">Discover Recipes</h1>
+    <p>Personalized suggestions based on your taste and preferences.</p>
+    <div class="hero-search">
+      <input type="text" id="quick-search" placeholder="Search for any recipe..." />
+      <button class="btn btn-primary" id="quick-search-btn">Search</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2 class="section-title">Suggested For You</h2>
+    <div class="recipes-grid" id="suggestions-grid">
+      <p class="loading">Loading suggestions...</p>
+    </div>
+  </div>
+
+  <script type="module">
+    import { isLoggedIn, getUser, logout } from '/js/utils.js';
+    const login = document.getElementById('nav-login');
+    const logoutBtn = document.getElementById('nav-logout');
+    if (isLoggedIn()) { login.style.display = 'none'; logoutBtn.style.display = 'inline-block'; }
+    logoutBtn.addEventListener('click', logout);
+    document.getElementById('quick-search-btn').addEventListener('click', () => {
+      const q = document.getElementById('quick-search').value.trim();
+      if (q) window.location.href = `/search.html?q=${encodeURIComponent(q)}`;
+    });
+    document.getElementById('quick-search').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') document.getElementById('quick-search-btn').click();
+    });
+  </script>
+  <script type="module" src="/js/home.js"></script>
+</body>
+</html>

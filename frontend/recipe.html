@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recipe - RecipeHub</title>
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+  <nav>
+    <a class="nav-logo" href="/index.html">🍽 RecipeHub</a>
+    <div class="nav-links">
+      <a href="/search.html">Search</a>
+      <a href="/saved.html" class="hide-mobile">Saved</a>
+      <a href="/profile.html" class="hide-mobile">Profile</a>
+      <a href="/login.html" id="nav-login" class="btn btn-primary">Login</a>
+      <a href="#" id="nav-logout" style="display:none" class="btn btn-outline">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div id="recipe-content"><p class="loading">Loading recipe...</p></div>
+
+    <div class="reviews-section">
+      <h2 class="section-title">Reviews</h2>
+      <div id="reviews-list"></div>
+
+      <div id="review-form-section" style="display:none; margin-top:2rem;">
+        <h3 style="margin-bottom:1rem;">Leave a Review</h3>
+        <form id="review-form">
+          <div class="star-inputs">
+            <span class="star-input" data-value="1">★</span>
+            <span class="star-input" data-value="2">★</span>
+            <span class="star-input" data-value="3">★</span>
+            <span class="star-input" data-value="4">★</span>
+            <span class="star-input" data-value="5">★</span>
+          </div>
+          <div class="form-group">
+            <textarea id="review-comment" placeholder="Share your thoughts (optional)..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit Review</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { isLoggedIn, logout } from '/js/utils.js';
+    const login = document.getElementById('nav-login');
+    const logoutBtn = document.getElementById('nav-logout');
+    if (isLoggedIn()) { login.style.display = 'none'; logoutBtn.style.display = 'inline-block'; }
+    logoutBtn.addEventListener('click', logout);
+  </script>
+  <script type="module" src="/js/recipe.js"></script>
+</body>
+</html>

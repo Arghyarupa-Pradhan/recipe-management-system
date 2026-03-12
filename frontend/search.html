@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search Recipes - RecipeHub</title>
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+  <nav>
+    <a class="nav-logo" href="/index.html">🍽 RecipeHub</a>
+    <div class="nav-links">
+      <a href="/search.html">Search</a>
+      <a href="/saved.html" class="hide-mobile">Saved</a>
+      <a href="/profile.html" class="hide-mobile">Profile</a>
+      <a href="/login.html" id="nav-login" class="btn btn-primary">Login</a>
+      <a href="#" id="nav-logout" style="display:none" class="btn btn-outline">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1 class="section-title">Search Recipes</h1>
+
+    <!-- Tabs -->
+    <div class="search-tabs">
+      <button class="search-tab active" data-panel="panel-search">🔍 Search & Filter</button>
+      <button class="search-tab" data-panel="panel-ingredients">🥕 By Ingredients</button>
+    </div>
+
+    <!-- Panel 1: Regular Search -->
+    <div class="search-panel active" id="panel-search">
+      <form class="search-bar" id="search-form">
+        <input type="text" id="search-input" placeholder="Search recipes..." />
+        <select id="filter-cuisine"><option value="">All Cuisines</option></select>
+        <select id="filter-diet"><option value="">All Diets</option></select>
+        <select id="filter-intolerance"><option value="">No Intolerance Filter</option></select>
+        <input type="number" id="filter-time" placeholder="Max time (mins)" min="5" max="300" style="width:160px"/>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+    </div>
+
+    <!-- Panel 2: By Ingredients -->
+    <div class="search-panel" id="panel-ingredients">
+      <div class="search-bar">
+        <input type="text" id="ingredient-search-input" 
+          placeholder="Enter ingredients you have e.g: egg, milk, flour" 
+          style="flex:1" />
+        <button class="btn btn-primary" id="ingredient-search-btn">Find Recipes</button>
+      </div>
+      <p style="color:var(--muted); font-size:.85rem; margin-top:.5rem;">
+        💡 Your allergy filters from your profile are automatically applied.
+      </p>
+    </div>
+
+    <div class="recipes-grid" id="results-grid">
+      <p class="loading">Use the search above to find recipes.</p>
+    </div>
+  </div>
+
+  <script type="module">
+    import { isLoggedIn, logout } from '/js/utils.js';
+    const login = document.getElementById('nav-login');
+    const logoutBtn = document.getElementById('nav-logout');
+    if (isLoggedIn()) { login.style.display = 'none'; logoutBtn.style.display = 'inline-block'; }
+    logoutBtn.addEventListener('click', logout);
+  </script>
+  <script type="module" src="/js/search.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saved Recipes - RecipeHub</title>
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+  <nav>
+    <a class="nav-logo" href="/index.html">🍽 RecipeHub</a>
+    <div class="nav-links">
+      <a href="/search.html">Search</a>
+      <a href="/saved.html">Saved</a>
+      <a href="/profile.html" class="hide-mobile">Profile</a>
+      <a href="#" id="nav-logout" class="btn btn-outline">Logout</a>
+    </div>
+  </nav>
+  <div class="container">
+    <h1 class="section-title">My Saved Recipes</h1>
+    <div class="recipes-grid" id="saved-grid"></div>
+  </div>
+  <script type="module">
+    import { logout } from '/js/utils.js';
+    document.getElementById('nav-logout').addEventListener('click', logout);
+  </script>
+  <script type="module" src="/js/saved.js"></script>
+</body>
+</html>
