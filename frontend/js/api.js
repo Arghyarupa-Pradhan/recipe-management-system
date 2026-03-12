@@ -2,7 +2,7 @@
 // API - Single place for all backend fetch() calls
 // ============================================================
 
-const BASE_URL = "https://recipehub-backend.onrender.com/api";
+const BASE_URL = "https://recipehub-backend-qp48.onrender.com/api";
 
 const authHeaders = () => ({
   "Content-Type": "application/json",
